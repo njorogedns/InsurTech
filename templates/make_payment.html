@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Payment for {{ policy }}</title>
+    <script src="https://js.squareupsandbox.com/v2/paymentform"></script>
+    <script>
+        
+        var paymentForm = new SqPaymentForm({
+            applicationId: 'sq0idp-wjAHkIaY_D64MeX7acupsw',
+            locationId: 'LF3YA7QKEPZCB',
+            inputClass: 'sq-input',
+            autoBuild: false,
+            inputStyles: [
+                {
+                    fontSize: '16px',
+                    padding: '12px',
+                    backgroundColor: 'white'
+                }
+            ],
+            // Define payment form elements
+            cardNumber: {
+                elementId: 'sq-card-number',
+                placeholder: 'Card Number'
+            },
+            cvv: {
+                elementId: 'sq-cvv',
+                placeholder: 'CVV'
+            },
+            expirationDate: {
+                elementId: 'sq-expiration-date',
+                placeholder: 'MM/YY'
+            },
+            postalCode: {
+                elementId: 'sq-postal-code',
+                placeholder: 'Postal Code'
+            },
+            callbacks: {
+                // Handle errors
+                onError: function (errors) {
+                },
+                // Handle successful payment
+                onPaymentComplete: function () {
+                    // Redirect to success page or perform other actions
+                    alert('Payment successful!');
+                }
+            }
+        });
+
+        window.onload = function () {
+            paymentForm.build();
+        }
+
+        // Submit payment form
+        function submitPayment() {
+            paymentForm.requestCardNonce();
+        }
+    </script>
+</head>
+<body>
+    <h1>Make Payment for {{ policy }}</h1>
+    <div id="sq-card-number"></div>
+    <div id="sq-expiration-date"></div>
+    <div id="sq-cvv"></div>
+    <div id="sq-postal-code"></div>
+    <button onclick="submitPayment()">Pay Now</button>
+</body>
+</html>
