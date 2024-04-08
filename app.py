@@ -1,30 +1,44 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 
-app = Flask(InsurTech)
+app = Flask(__name__)
+
+# Dummy user data for demonstration
+users = [
+    {'username': 'user1', 'password': 'password1'},
+    {'username': 'user2', 'password': 'password2'}
+]
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/select_policy', methods=['GET', 'POST'])
-def select_policy():
+@app.route('/register', methods=['GET', 'POST'])
+def register():
     if request.method == 'POST':
-        policy = request.form['policy']
-        # Redirect to payment page based on selected policy
-        if policy == 'comprehensive':
-            return redirect(url_for('make_payment', policy='Comprehensive Insurance'))
-        elif policy == 'personal':
-            return redirect(url_for('make_payment', policy='Personal Insurance'))
-        elif policy == 'accident':
-            return redirect(url_for('make_payment', policy='Accident Insurance'))
-    return render_template('select_policy.html')
+        username = request.form['username']
+        password = request.form['password']
 
-@app.route('/make_payment/<policy>', methods=['GET', 'POST'])
-def make_payment(policy):
+        print(f"Registered: Username - {username}, Password - {password}")
+        return redirect(url_for('login'))
+    return render_template('register.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
     if request.method == 'POST':
-        # Process payment logic can be added here
-        return redirect(url_for('index'))  # Redirect to homepage after payment
-    return render_template('make_payment.html', policy=policy)
+        username = request.form['username']
+        password = request.form['password']
+        # Check if the username and password match any user in the users list
+        for user in users:
+            if user['username'] == username and user['password'] == password:
+                return redirect(url_for('dashboard'))
+        # If no matching user found, redirect back to the login page
+        return redirect(url_for('login'))
+    return render_template('login.html')
+
+@app.route('/dashboard')
+def dashboard():
+    # Logic for displaying user dashboard
+    return render_template('dashboard.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
