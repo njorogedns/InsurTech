@@ -1,7 +1,3 @@
-Certainly! Below is a detailed README file for the project:
-
----
-
 # InsurTech Web Application
 
 InsurTech is a simple web application built using Flask, a lightweight Python web framework, that allows users to select a car insurance policy and proceed to make payments. This README provides an overview of the project structure, functionality, and instructions for running the application.
@@ -43,7 +39,7 @@ To run the InsurTech web application locally, follow these steps:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/InsurTech.git
+git clone https://github.com/njorogedns/InsurTech.git
 ```
 
 2. Navigate to the project directory:
