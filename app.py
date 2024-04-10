@@ -58,6 +58,74 @@ def create_catalog_item(name, description, price):
     else:
         return None
         
+# Square Loyalty API integration
+def enroll_customer_in_loyalty_program(customer_id, loyalty_program_id):
+    url = f'https://connect.squareup.com/v2/loyalty/customers/{customer_id}/enroll'
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'Content-Type': 'application/json'
+    }
+    data = {
+        'program_id': loyalty_program_id
+    }
+    response = requests.post(url, headers=headers, json=data)
+    if response.status_code == 200:
+        return True
+    else:
+        return False
+
+def accumulate_points(customer_id, loyalty_program_id, points):
+    url = f'https://connect.squareup.com/v2/loyalty/customers/{customer_id}/accumulate'
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'Content-Type': 'application/json'
+    }
+    data = {
+        'program_id': loyalty_program_id,
+        'accumulate_points': {
+            'points': points
+        }
+    }
+    response = requests.post(url, headers=headers, json=data)
+    if response.status_code == 200:
+        return True
+    else:
+        return False
+
+def redeem_rewards(customer_id, loyalty_program_id, reward_id):
+    url = f'https://connect.squareup.com/v2/loyalty/customers/{customer_id}/redeem'
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'Content-Type': 'application/json'
+    }
+    data = {
+        'program_id': loyalty_program_id,
+        'redeem_rewards': {
+            'reward_id': reward_id
+        }
+    }
+    response = requests.post(url, headers=headers, json=data)
+    if response.status_code == 200:
+        return True
+    else:
+        return False
+
+def create_loyalty_program(name, points_type):
+    url = 'https://connect.squareup.com/v2/loyalty/programs'
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'Content-Type': 'application/json'
+    }
+    data = {
+        'name': name,
+        'points_type': points_type
+    }
+    response = requests.post(url, headers=headers, json=data)
+    if response.status_code == 200:
+        return response.json()['loyalty_program']
+    else:
+        return None
+        
 @app.route('/')
 def index():
     return render_template('index.html')
