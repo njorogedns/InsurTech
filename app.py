@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request
 
 app = Flask(__name__)
 
-# Dummy user data for demonstration
+#user data for demonstration
 users = [
     {'username': 'user1', 'password': 'password1'},
     {'username': 'user2', 'password': 'password2'}
