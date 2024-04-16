@@ -1,6 +1,75 @@
 from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask
 
+# Import Square SDK components
+import squareup
+from squareup.apis.orders_api import OrdersApi
+from squareup.configuration import Configuration
+from squareup.models import CreateOrderRequest, OrderLineItem
+
+# Initialize Flask app
 app = Flask(__name__)
+
+# Square API configuration
+square_access_token = 'EAAAlzfcmZv_YiE-IO6r87tHqNHYx0Y-2boubyAGvgEbsPM4gArWkrQwSMoXufAU'
+square_location_id = 'LDSS82RKX7DDH'
+configuration = Configuration()
+configuration.access_token = square_access_token
+api_instance = OrdersApi(squareup.ApiClient(configuration))
+
+# Function to create an order
+def create_order():
+    # Define line items for the order (example)
+    line_items = [OrderLineItem(name='Item 1', quantity=1, base_price_money={'amount': 1000, 'currency': 'USD'})]
+    
+    # Construct the order request object
+    create_order_request = CreateOrderRequest(location_id=square_location_id, line_items=line_items)
+
+    # Send request to create the order
+    try:
+        created_order = api_instance.create_order(create_order_request)
+        return created_order.order.id
+    except Exception as e:
+        return str(e)
+
+# Function to update an order
+def update_order(order_id, updated_order_details):
+    # Send request to update the order
+    try:
+        updated_order = api_instance.update_order(order_id, updated_order_details)
+        return "Order updated successfully"
+    except Exception as e:
+        return str(e)
+
+# Function to retrieve a list of orders
+def list_orders():
+    # Send request to list orders
+    try:
+        orders = api_instance.list_orders()
+        return [order.id for order in orders.orders]
+    except Exception as e:
+        return str(e)
+
+# Route for creating an order
+@app.route('/create_order')
+def create_order_route():
+    order_id = create_order()
+    return f"Order created successfully with ID: {order_id}"
+
+# Route for updating an order
+@app.route('/update_order')
+def update_order_route():
+    order_id = 'YOUR_ORDER_ID'  # Replace with an actual order ID
+    updated_order_details = CreateOrderRequest() 
+    response = update_order(order_id, updated_order_details)
+    return response
+
+# Route for listing orders
+@app.route('/list_orders')
+def list_orders_route():
+    orders = list_orders()
+    return f"List of orders: {orders}"
+
 
 # Dummy user data for demonstration
 users = [
