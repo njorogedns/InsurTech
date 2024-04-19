@@ -1,105 +1,69 @@
 # InsurTech Web Application
 
-InsurTech is a simple web application built using Flask, a lightweight Python web framework, that allows users to select a car insurance policy and proceed to make payments. This README provides an overview of the project structure, functionality, and instructions for running the application.
-
-## Table of Contents
-
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+This is a web application built with Flask for managing car insurance policies. Users can register, log in, view their dashboard, select insurance policies, make payments, and manage their loyalty program.
 
 ## Features
-### User Authentication
-- Users can register for an account by providing a username, password, email, given name, and family name.
-- Registered users can log in securely using their credentials.
-- User authentication is handled using industry-standard security practices.
 
-### Policy Selection
-- Users can choose from a variety of car insurance policies, including comprehensive, personal, and accident policies.
-- Each policy offers different coverage options and pricing.
-
-### Payments
-- Users can securely make payments for their selected insurance policies using Square's Payment API.
-- Payment processing is seamless and ensures the security of users' financial information.
-
-### Dashboard
-- Registered users have access to a personalized dashboard where they can view details of their insurance policies and payment history.
-- The dashboard provides users with a convenient way to manage their insurance policies and track their payment activities.
-
-### Loyalty Program Integration (New Feature)
-- Implemented a loyalty program using Square's Loyalty API to reward customers for their loyalty.
-- Users are automatically enrolled in the loyalty program upon registration.
-- Users can earn points for purchasing insurance policies, which can be redeemed for rewards or benefits.
-
-## Square API Integrations
-
-### Square Payment API
-- Integrated Square's Payment API to enable secure payment processing for insurance policy purchases.
-- Users can make payments using various payment methods supported by Square, including credit/debit cards and digital wallets.
-
-### Square Loyalty API
-- Implemented Square's Loyalty API for managing a loyalty program within the application.
-- Users earn loyalty points for purchasing insurance policies, and these points can be redeemed for rewards or benefits.
-- The Loyalty API provides a seamless way to manage and track customer loyalty within the application.
+- **User Authentication:** Users can register and log in securely to access their accounts.
+- **Dashboard:** Users can view their profile information, active policies, and other relevant details on their dashboard.
+- **Insurance Policy Selection:** Users can choose from various car insurance policies, including comprehensive, personal, and accident coverage.
+- **Payments:** Users can make payments for selected insurance policies securely through Square's payment API.
+- **Loyalty Program:** Users can enroll in a loyalty program, accrue points, and redeem rewards.
+- **Database Integration:** User and order information is stored in a database for persistence and retrieval.
+- **Square API Integration:** The application integrates with Square's APIs for payment processing, loyalty program management, and order management.
 
 ## Project Structure
 
-The project directory structure is as follows:
+- `app.py`: Main Flask application file containing routes and logic.
+- `templates/`: Directory containing HTML templates for rendering views.
+- `static/`: Directory containing static files such as CSS and JavaScript.
+- `models.py`: File containing database models for users and orders.
+- `README.md`: Documentation file for the project.
 
-```
-InsurTech/
-│
-├── app.py            # Flask application file containing routes and server configuration
-├── templates/        # HTML templates for different pages
-│ ├── dashboard.html # Dashboard template
-│ ├── index.html # Homepage template
-│ ├── login.html # Login page template
-│ ├── register.html # Registration page template
-│ └── select_policy.html # Policy selection page template
-└── README.md         # Project documentation
-```
+## Installation and Setup
 
-## Installation
-
-To run the InsurTech web application locally, follow these steps:
-
-1. Clone the repository:
+1. Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/njorogedns/InsurTech.git
+git clone <repository_url>
 ```
 
-2. Navigate to the project directory:
+2. Install the required dependencies:
 
 ```bash
-cd InsurTech
+pip install -r requirements.txt
 ```
 
-3. Install Flask (if not already installed):
+3. Set up a virtual environment (optional but recommended).
 
-```bash
-pip install Flask
-```
+4. Configure your database connection in `app.py` and `models.py`.
 
-## Usage
+5. Set up your Square developer account and obtain API credentials.
 
-To start the Flask development server and run the application, execute the following command:
+6. Update the configuration variables in `app.py` with your Square credentials.
+
+7. Run the application:
 
 ```bash
 python app.py
 ```
 
-Once the server is running, you can access the InsurTech web application by opening a web browser and navigating to `http://127.0.0.1:5000/`.
+8. Access the application in your web browser at `http://localhost:5000`.
 
-## Contributing
+## Usage
 
-Contributions are welcome! If you have any suggestions, improvements, or feature requests, please feel free to open an issue or submit a pull request.
+- Register a new account or log in with existing credentials.
+- View your dashboard to manage insurance policies, make payments, and track loyalty program points.
+- Select insurance policies based on your preferences and make payments securely.
+- Enroll in the loyalty program to earn points and redeem rewards.
+
+## Technologies Used
+
+- Flask: Python web framework for building the application.
+- SQLAlchemy: Python SQL toolkit and Object-Relational Mapping (ORM) library for database integration.
+- HTML/CSS/JavaScript: Frontend technologies for user interface and interactivity.
+- Square API: Integration for payment processing, loyalty program management, and order management.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
+This project is licensed under the [MIT License](LICENSE).
