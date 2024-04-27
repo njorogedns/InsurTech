@@ -25,7 +25,7 @@ This is a web application built with Flask for managing car insurance policies. 
 1. Clone the repository to your local machine:
 
 ```bash
-git clone <repository_url>
+git clone https://github.com/njorogedns/InsurTech.git
 ```
 
 2. Install the required dependencies:
