@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Policy</title>
+    <title>Select Car Insurance Policy</title>
 </head>
 <body>
     <h1>Select Car Insurance Policy</h1>
     <form action="{{ url_for('select_policy') }}" method="POST">
         <h3>Choose a Car Insurance Policy:</h3>
-        <input type="radio" name="policy" value="liability" required> Liability Insurance (Basic coverage for damages and injuries you cause to others)<br>
-        <input type="radio" name="policy" value="collision" required> Collision Insurance (Coverage for damage to your vehicle from collisions)<br>
-        <input type="radio" name="policy" value="comprehensive" required> Comprehensive Insurance (Coverage for damage to your vehicle from non-collision incidents)<br>
-        <input type="radio" name="policy" value="personal_injury" required> Personal Injury Protection (PIP) Insurance (Coverage for medical expenses and lost wages)<br>
-        <input type="radio" name="policy" value="uninsured_motorist" required> Uninsured/Underinsured Motorist Coverage (Coverage for accidents with uninsured or underinsured drivers)<br>
-        <input type="radio" name="policy" value="gap" required> Gap Insurance (Coverage for the difference between car loan/lease and actual cash value)<br>
-        <input type="radio" name="policy" value="rental_reimbursement" required> Rental Reimbursement Coverage (Coverage for renting a car while yours is repaired)<br>
-        <input type="radio" name="policy" value="towing_and_labor" required> Towing and Labor Coverage (Coverage for towing and labor costs)<br><br>
+        <input type="radio" name="policy" value="liability" required> Liability Insurance - $500 per year (Basic coverage for damages and injuries you cause to others)<br>
+        <input type="radio" name="policy" value="collision" required> Collision Insurance - $700 per year (Coverage for damage to your vehicle from collisions)<br>
+        <input type="radio" name="policy" value="comprehensive" required> Comprehensive Insurance - $800 per year (Coverage for damage to your vehicle from non-collision incidents)<br>
+        <input type="radio" name="policy" value="personal_injury" required> Personal Injury Protection (PIP) Insurance - $600 per year (Coverage for medical expenses and lost wages)<br>
+        <input type="radio" name="policy" value="uninsured_motorist" required> Uninsured/Underinsured Motorist Coverage - $400 per year (Coverage for accidents with uninsured or underinsured drivers)<br>
+        <input type="radio" name="policy" value="gap" required> Gap Insurance - $300 per year (Coverage for the difference between car loan/lease and actual cash value)<br>
+        <input type="radio" name="policy" value="rental_reimbursement" required> Rental Reimbursement Coverage - $200 per year (Coverage for renting a car while yours is repaired)<br>
+        <input type="radio" name="policy" value="towing_and_labor" required> Towing and Labor Coverage - $150 per year (Coverage for towing and labor costs)<br><br>
         <button type="submit">Proceed to Payment</button>
     </form>
 </body>
